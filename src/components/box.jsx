@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './box.css'
 // import circleicon from '../assets/circle.png'
 // import crossicon from '../assets/cross.png'
@@ -56,11 +56,25 @@ function Box() {
     const won = (winner) => {
         if (winner == "X") {
             inputref.current.innerHTML = 'Congrats X win';
+            setTimeout(autoreset, 2000);
         }
         else {
             inputref.current.innerHTML = 'Congrats O win';
+            setTimeout(autoreset, 2000);
         }
     }
+
+    function autoreset(){
+        newdata(["", "", "", "", "", "", "", "", ""]);
+        setcount(0);
+        // Reset the board cells
+        document.querySelectorAll('[class*="bg-blue-500"]').forEach(cell => 
+        {
+            cell.innerHTML = "";
+        });
+    }
+
+
 
     const resetbut = () => {
         newdata(["", "", "", "", "", "", "", "", ""]);
